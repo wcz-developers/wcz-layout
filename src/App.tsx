@@ -5,6 +5,11 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [input, setInput] = useState('');
+
+  const handleChange = (event: any) => {
+    setInput(event.target.value);
+  };
 
   return (
     <>
@@ -28,6 +33,13 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div>
+        <h1>Vulnerable React Component</h1>
+        <p>Type some HTML or script into the input below:</p>
+        <input type="text" onChange={handleChange} placeholder="Enter untrusted HTML" />
+        {/* UNSAFE: using unsanitized input in dangerouslySetInnerHTML */}
+        <div dangerouslySetInnerHTML={{ __html: input }} />
+      </div>
     </>
   )
 }
