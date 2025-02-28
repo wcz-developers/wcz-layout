@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import DOMPurify from 'dompurify';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -38,7 +39,7 @@ function App() {
         <p>Type some HTML or script into the input below:</p>
         <input type="text" onChange={handleChange} placeholder="Enter untrusted HTML" />
         {/* UNSAFE: using unsanitized input in dangerouslySetInnerHTML */}
-        <div dangerouslySetInnerHTML={{ __html: input }} />
+        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(input) }} />
       </div>
     </>
   )
