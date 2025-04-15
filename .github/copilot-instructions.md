@@ -1,0 +1,1 @@
+Generate modern ES6+ TypeScript code with full type annotations. Always write explicit types for variables, functions, and return values, and never use the 'any' type.
