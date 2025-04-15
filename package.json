@@ -22,7 +22,7 @@
     "i18next-http-backend": "^3.0.2",
     "keycloak-js": "^26.1.5",
     "react-i18next": "^15.4.1",
-    "use-local-storage-state": "^19.5.0",
+    "@toolpad/core": "^0.13.0",
     "uuidv7": "^1.0.2",
     "zod-i18n-map": "^2.27.0"
   },
@@ -30,8 +30,6 @@
     "@types/node": "^22.5.4",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "axios": "1.x",
-    "dayjs": "1.x",
     "tsup": "^8.4.0",
     "typescript": "^5.7.2",
     "vite-tsconfig-paths": "^5.1.4"
@@ -47,6 +45,8 @@
     "@tanstack/react-query": "5.x",
     "@tanstack/react-router": "1.x",
     "@tanstack/react-start": "1.x",
+    "axios": "1.x",
+    "dayjs": "1.x",
     "react": "19.x",
     "react-dom": "19.x",
     "vinxi": "0.x",

@@ -1,5 +1,9 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
-import * as React from 'react'
+import { Home } from '@mui/icons-material';
+import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router';
+import { Navigation } from "@toolpad/core/AppProvider";
+import * as React from 'react';
+import { NavigationParams } from '~/models/NavigationParams';
+import { LayoutProvider } from '~/providers/LayoutProvider';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,14 +31,25 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
+
+  const getNavigation = ({ t }: NavigationParams): Navigation => [
+    {
+      segment: "",
+      title: "Homepage",
+      icon: <Home />,
+    },
+  ];
+
   return (
     <html lang='en'>
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
-        <Scripts />
+        <LayoutProvider getNavigation={getNavigation}>
+          {children}
+          <Scripts />
+        </LayoutProvider>
       </body>
     </html>
   )

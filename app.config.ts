@@ -6,6 +6,9 @@ export default defineConfig({
     appDirectory: 'src',
   },
   vite: {
+    ssr: {
+      noExternal: ['@mui/*'],
+    },
     plugins: [
       tsConfigPaths({
         projects: ['./tsconfig.json'],
