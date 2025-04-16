@@ -1,7 +1,8 @@
-import { Home } from '@mui/icons-material';
+import { Home, InfoOutline } from '@mui/icons-material';
 import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router';
 import { Navigation } from "@toolpad/core/AppProvider";
 import * as React from 'react';
+import packageJson from "~/../package.json";
 import { NavigationParams } from '~/models/NavigationParams';
 import { LayoutProvider } from '~/providers/LayoutProvider';
 
@@ -38,6 +39,11 @@ function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
       title: "Homepage",
       icon: <Home />,
     },
+    {
+      segment: "/about",
+      title: "About",
+      icon: <InfoOutline />
+    },
   ];
 
   return (
@@ -46,7 +52,10 @@ function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
         <HeadContent />
       </head>
       <body>
-        <LayoutProvider getNavigation={getNavigation}>
+        <LayoutProvider
+          getNavigation={getNavigation}
+          title={packageJson.name}
+        >
           {children}
           <Scripts />
         </LayoutProvider>

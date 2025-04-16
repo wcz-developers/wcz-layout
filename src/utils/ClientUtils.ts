@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export class Platform {
     static readonly isAndroid = /android/i.test(navigator.userAgent);
     static readonly isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -12,3 +14,11 @@ export const getContrastTextColor = (color: string) => {
     const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
     return (yiq >= 128) ? "black" : "white";
 };
+
+export const wczApiClient = axios.create();
+
+wczApiClient.interceptors.request.use(async (config) => {
+    const token = "YOUR_ACCESS";
+    config.headers["Authorization"] = `Bearer ${token}`;
+    return config;
+});
