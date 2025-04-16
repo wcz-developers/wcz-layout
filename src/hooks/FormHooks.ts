@@ -9,8 +9,7 @@ import { FormSubmitButton as SubmitButton } from "~/components/form/FormSubmitBu
 import { FormSwitch as Switch } from "~/components/form/FormSwitch";
 import { FormTextField as TextField } from "~/components/form/FormTextField";
 
-export const { fieldContext, useFieldContext, formContext, useFormContext } =
-    createFormHookContexts();
+export const { fieldContext, useFieldContext, formContext, useFormContext } = createFormHookContexts();
 
 export const { useAppForm: useLayoutForm, withForm: withLayoutForm } =
     createFormHook({
