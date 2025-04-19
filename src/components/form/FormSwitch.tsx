@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useFieldContext } from "~/hooks/FormHooks";
 import { FormOmittedProps, getFieldStatus } from "~/utils/FormUtils";
 
-interface FormSwitchProps extends Omit<SwitchProps, FormOmittedProps> {
+export interface FormSwitchProps extends Omit<SwitchProps, FormOmittedProps> {
     label?: string;
 }
 

@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useFieldContext } from "~/hooks/FormHooks";
 import { FormOmittedProps, getFieldStatus } from "~/utils/FormUtils";
 
-interface FormTextFieldProps extends Omit<TextFieldProps, FormOmittedProps> {
+export interface FormTextFieldProps extends Omit<TextFieldProps, FormOmittedProps> {
     type?: "number" | "color" | "email" | "password" | "search" | "tel" | "text" | "url"
 }
 

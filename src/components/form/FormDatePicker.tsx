@@ -5,7 +5,7 @@ import { FC } from "react";
 import { useFieldContext } from "~/hooks/FormHooks";
 import { FormOmittedProps, getFieldStatus } from "~/utils/FormUtils";
 
-interface FormDatePickerProps extends Omit<DatePickerProps<Dayjs>, FormOmittedProps> {
+export interface FormDatePickerProps extends Omit<DatePickerProps<Dayjs>, FormOmittedProps> {
     textFieldProps?: TextFieldProps;
 }
 

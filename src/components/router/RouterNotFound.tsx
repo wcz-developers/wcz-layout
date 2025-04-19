@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-export function DefaultNotFoundComponent() {
+export function RouterNotFound() {
   return (
     <div className="space-y-2 p-2">
       <div className="text-gray-600 dark:text-gray-400">

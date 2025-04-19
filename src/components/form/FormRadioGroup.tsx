@@ -8,7 +8,7 @@ interface Option {
     value: string | number;
 }
 
-interface FormRadioGroupProps extends Omit<RadioGroupProps, FormOmittedProps> {
+export interface FormRadioGroupProps extends Omit<RadioGroupProps, FormOmittedProps> {
     label?: string;
     options: Option[];
 }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { UserService } from '~/services/UserService';
 
 export class Platform {
     static readonly isAndroid = /android/i.test(navigator.userAgent);
@@ -18,7 +19,8 @@ export const getContrastTextColor = (color: string) => {
 export const wczApiClient = axios.create();
 
 wczApiClient.interceptors.request.use(async (config) => {
-    const token = "YOUR_ACCESS";
-    config.headers["Authorization"] = `Bearer ${token}`;
+    await UserService.updateToken();
+    const token = await UserService.getToken()
+    config.headers.Authorization = `Bearer ${token}`;
     return config;
 });

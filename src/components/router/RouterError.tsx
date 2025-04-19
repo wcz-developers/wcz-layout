@@ -1,7 +1,12 @@
 import { ErrorComponent, Link, rootRouteId, useMatch, useRouter, } from '@tanstack/react-router'
-import type { ErrorComponentProps } from '@tanstack/react-router'
+import type { ErrorComponentProps } from '@tanstack/react-router';
+import { FC } from 'react';
 
-export function DefaultErrorComponent({ error }: ErrorComponentProps) {
+interface RouterErrorProps {
+  error: ErrorComponentProps['error'];
+}
+
+export const RouterError: FC<RouterErrorProps> = ({ error }) => {
   const router = useRouter()
   const isRoot = useMatch({
     strict: false,

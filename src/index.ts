@@ -1,8 +1,9 @@
 /* Components */
 export { RouterButton } from "./components/router/RouterButton";
 export { RouterLink } from "./components/router/RouterLink";
-export { DefaultNotFoundComponent } from "./components/router/DefaultNotFoundComponent";
-export { DefaultErrorComponent } from "./components/router/DefaultErrorComponent";
+export { RouterTab } from "./components/router/RouterTab";
+export { RouterNotFound } from "./components/router/RouterNotFound";
+export { RouterError } from "./components/router/RouterError";
 
 /* Providers */
 export { LayoutProvider } from "./providers/LayoutProvider";
@@ -19,3 +20,4 @@ export { useLocalStorageState } from '@toolpad/core/useLocalStorageState';
 /* Models */
 export type { NavigationParams } from "./models/NavigationParams";
 export type { Navigate } from "@toolpad/core/AppProvider";
+export type { User } from "./models/User";

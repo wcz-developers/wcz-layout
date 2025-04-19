@@ -5,6 +5,7 @@ import * as React from 'react';
 import packageJson from "~/../package.json";
 import { NavigationParams } from '~/models/NavigationParams';
 import { LayoutProvider } from '~/providers/LayoutProvider';
+import { UserService } from '~/services/UserService';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -20,6 +21,10 @@ export const Route = createRootRoute({
       { rel: 'icon', href: '/favicon.ico' },
     ],
   }),
+  beforeLoad: async () => {
+    // const user = await UserService.initKeycloak();
+    // return { user }
+  },
   component: RootComponent,
 })
 

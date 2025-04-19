@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useFieldContext } from "~/hooks/FormHooks";
 import { FormOmittedProps, getFieldStatus } from "~/utils/FormUtils";
 
-interface FormCheckboxProps extends Omit<CheckboxProps, FormOmittedProps> {
+export interface FormCheckboxProps extends Omit<CheckboxProps, FormOmittedProps> {
     label?: string;
 }
 

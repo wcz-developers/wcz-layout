@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useFieldContext } from "~/hooks/FormHooks";
 import { FormOmittedProps, getFieldStatus } from "~/utils/FormUtils";
 
-interface FormAutocompleteProps extends Omit<AutocompleteProps<any, boolean, boolean, boolean>, FormOmittedProps> {
+export interface FormAutocompleteProps extends Omit<AutocompleteProps<any, boolean, boolean, boolean>, FormOmittedProps> {
     textFieldProps?: Omit<TextFieldProps, FormOmittedProps>;
 }
 
