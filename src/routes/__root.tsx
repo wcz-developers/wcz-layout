@@ -1,5 +1,6 @@
 import { Home, InfoOutline } from '@mui/icons-material';
-import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router';
+import { QueryClient } from '@tanstack/react-query';
+import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from '@tanstack/react-router';
 import { Navigation } from "@toolpad/core/AppProvider";
 import * as React from 'react';
 import packageJson from "~/../package.json";
@@ -7,11 +8,17 @@ import { NavigationParams } from '~/models/NavigationParams';
 import { LayoutProvider } from '~/providers/LayoutProvider';
 import { UserService } from '~/services/UserService';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient
+}>()({
   head: () => ({
     meta: [
       { charSet: 'utf-8', },
       { name: 'viewport', content: 'width=device-width, initial-scale=1', },
+      { name: "title", content: packageJson.name },
+      { name: "og:type", content: "website" },
+      { name: "og:title", content: packageJson.name },
+      { name: "og:image", content: "/favicon-32x32.png" },
     ],
     links: [
       { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png', },

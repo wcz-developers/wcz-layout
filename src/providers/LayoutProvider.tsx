@@ -1,10 +1,9 @@
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { createTheme, Theme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Navigation } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import i18next from "i18next";
@@ -18,8 +17,6 @@ import zodCsTranslations from "zod-i18n-map/locales/cs/zod.json";
 import zodEnTranslations from "zod-i18n-map/locales/en/zod.json";
 import { NavigationParams } from '~/models/NavigationParams';
 import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
-
-const queryClient = new QueryClient();
 
 i18next
     .use(initReactI18next)
@@ -123,24 +120,22 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
         <CacheProvider value={emotionCache}>
             <ThemeProvider theme={createdTheme}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.resolvedLanguage}>
-                    <QueryClientProvider client={queryClient}>
-                        <TanstackRouterAppProvider theme={createdTheme}>
-                            <DashboardLayout
-                                defaultSidebarCollapsed
-                                navigation={navigation}
-                                branding={{
-                                    logo: <img src="/android-chrome-192x192.png" alt="Logo" />,
-                                    title: title
-                                }}
-                            // slots={{
-                            //     toolbarActions: ToolbarActions,
-                            //     toolbarAccount: ToolbarAccount,
-                            // }}
-                            >
-                                {children}
-                            </DashboardLayout>
-                        </TanstackRouterAppProvider>
-                    </QueryClientProvider>,
+                    <TanstackRouterAppProvider theme={createdTheme}>
+                        <DashboardLayout
+                            defaultSidebarCollapsed
+                            navigation={navigation}
+                            branding={{
+                                logo: <img src="/android-chrome-192x192.png" alt="Logo" />,
+                                title: title
+                            }}
+                        // slots={{
+                        //     toolbarActions: ToolbarActions,
+                        //     toolbarAccount: ToolbarAccount,
+                        // }}
+                        >
+                            {children}
+                        </DashboardLayout>
+                    </TanstackRouterAppProvider>
                 </LocalizationProvider>
             </ThemeProvider>
         </CacheProvider>

@@ -4,7 +4,7 @@ import { useFieldContext } from "~/hooks/FormHooks";
 import { FormOmittedProps, getFieldStatus } from "~/utils/FormUtils";
 
 export interface FormTextFieldProps extends Omit<TextFieldProps, FormOmittedProps> {
-    type?: "number" | "color" | "email" | "password" | "search" | "tel" | "text" | "url"
+    type?: "color" | "email" | "password" | "search" | "tel" | "text" | "url"
 }
 
 export const FormTextField: FC<FormTextFieldProps> = (props) => {
