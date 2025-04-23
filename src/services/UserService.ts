@@ -20,7 +20,9 @@ const _kc = new Keycloak({
 
 
 const initKeycloak = async () => {
-    const authenticated = await _kc.init({ onLoad: "login-required" });
+    if (typeof window === "undefined") return;
+
+    const authenticated = await _kc.init({ onLoad: "check-sso" });
     if (authenticated) {
         return await loadUserInfo();
     } else {

@@ -128,10 +128,10 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
                                 logo: <img src="/android-chrome-192x192.png" alt="Logo" />,
                                 title: title
                             }}
-                        // slots={{
-                        //     toolbarActions: ToolbarActions,
-                        //     toolbarAccount: ToolbarAccount,
-                        // }}
+                            slots={{
+                                toolbarActions: () => null,
+                                toolbarAccount: () => null,
+                            }}
                         >
                             {children}
                         </DashboardLayout>
