@@ -108,6 +108,34 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
                     fullWidth: true,
                 },
             },
+            MuiTableContainer: {
+                styleOverrides: {
+                    root: ({ theme }) => ({
+                        height: 'calc(100vh - 56px)',
+                        [theme.breakpoints.up('sm')]: {
+                            height: 'calc(100vh - 64px)',
+                        },
+                        "& .MuiDataGrid-cell--editing": {
+                            "& .MuiInputBase-root": {
+                                height: "100%",
+                            },
+                        },
+                        "& .MuiDataGrid-columnHeaderTitle": {
+                            fontWeight: 600,
+                        },
+                        "& .Mui-error": {
+                            backgroundColor: theme.palette.error.main,
+                            color: theme.palette.error.contrastText,
+                        },
+                        "& .MuiDataGrid-booleanCell[data-value='true']": {
+                            color: `${theme.palette.success.main} !important`,
+                        },
+                        "& .MuiDataGrid-booleanCell[data-value='false']": {
+                            color: `${theme.palette.error.main} !important`,
+                        },
+                    }),
+                },
+            },
         },
     });
 

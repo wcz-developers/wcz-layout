@@ -2,15 +2,15 @@ import { Home, InfoOutline } from '@mui/icons-material';
 import { QueryClient } from '@tanstack/react-query';
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from '@tanstack/react-router';
 import { Navigation } from "@toolpad/core/AppProvider";
-import * as React from 'react';
 import packageJson from "~/../package.json";
 import { NavigationParams } from '~/models/NavigationParams';
 import { LayoutProvider } from '~/providers/LayoutProvider';
-import { UserService } from '~/services/UserService';
 
-export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient
-}>()({
+interface RouterContext {
+  queryClient: QueryClient;
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({
     meta: [
       { charSet: 'utf-8', },
@@ -28,23 +28,10 @@ export const Route = createRootRouteWithContext<{
       { rel: 'icon', href: '/favicon.ico' },
     ],
   }),
-  beforeLoad: async () => {
-    // const user = await UserService.initKeycloak();
-    // return { user }
-  },
   component: RootComponent,
 })
 
 function RootComponent() {
-  return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
-  )
-}
-
-function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
-
   const getNavigation = ({ t }: NavigationParams): Navigation => [
     {
       segment: "",
@@ -52,7 +39,7 @@ function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
       icon: <Home />,
     },
     {
-      segment: "/about",
+      segment: "about",
       title: "About",
       icon: <InfoOutline />
     },
@@ -68,10 +55,10 @@ function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
           getNavigation={getNavigation}
           title={packageJson.name}
         >
-          {children}
+          <Outlet />
           <Scripts />
         </LayoutProvider>
       </body>
     </html>
-  )
+  );
 }
