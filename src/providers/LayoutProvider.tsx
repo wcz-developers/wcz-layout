@@ -1,6 +1,4 @@
-import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -36,7 +34,6 @@ interface ProvidersProps {
 }
 
 export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, children }) => {
-    const emotionCache = createCache({ key: 'css' });
     const { t, i18n } = useTranslation();
 
     const createdTheme = createTheme({
@@ -117,27 +114,22 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
     const navigation: Navigation = getNavigation({ user: { name: "Dalibor" }, i18n, t });
 
     return (
-        <CacheProvider value={emotionCache}>
-            <ThemeProvider theme={createdTheme}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.resolvedLanguage}>
-                    <TanstackRouterAppProvider theme={createdTheme}>
-                        <DashboardLayout
-                            defaultSidebarCollapsed
-                            navigation={navigation}
-                            branding={{
-                                logo: <img src="/android-chrome-192x192.png" alt="Logo" />,
-                                title: title
-                            }}
-                            slots={{
-                                toolbarActions: () => null,
-                                toolbarAccount: () => null,
-                            }}
-                        >
-                            {children}
-                        </DashboardLayout>
-                    </TanstackRouterAppProvider>
-                </LocalizationProvider>
-            </ThemeProvider>
-        </CacheProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.resolvedLanguage}>
+            <TanstackRouterAppProvider navigation={navigation} theme={createdTheme}>
+                <DashboardLayout
+                    defaultSidebarCollapsed
+                    branding={{
+                        logo: <img src="/android-chrome-192x192.png" alt="Logo" />,
+                        title: title
+                    }}
+                    slots={{
+                        toolbarActions: () => null,
+                        toolbarAccount: () => null,
+                    }}
+                >
+                    {children}
+                </DashboardLayout>
+            </TanstackRouterAppProvider>
+        </LocalizationProvider>
     )
 }
