@@ -7,7 +7,7 @@ import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import I18NextHttpBackend from "i18next-http-backend";
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { initReactI18next, useTranslation } from "react-i18next";
 import { z } from "zod";
 import { zodI18nMap } from "zod-i18n-map";
@@ -15,6 +15,7 @@ import zodCsTranslations from "zod-i18n-map/locales/cs/zod.json";
 import zodEnTranslations from "zod-i18n-map/locales/en/zod.json";
 import { NavigationParams } from '~/models/NavigationParams';
 import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
+import { AppTitle } from '~/components/AppTitle';
 
 i18next
     .use(initReactI18next)
@@ -33,8 +34,9 @@ interface ProvidersProps {
     children: React.ReactNode;
 }
 
-export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, children }) => {
+export const LayoutProvider: FC<ProvidersProps> = (props) => {
     const { t, i18n } = useTranslation();
+    const [title, setTitle] = useState(props.title);
 
     const createdTheme = createTheme({
         cssVariables: {
@@ -52,8 +54,8 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
             },
             dark: {
                 palette: {
-                    primary: { main: indigo[600] },
-                    secondary: { main: indigo[600] },
+                    primary: { main: indigo[400] },
+                    secondary: { main: indigo[400] },
                     background: {
                         paper: grey[900],
                     },
@@ -103,8 +105,6 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
             },
             MuiTextField: {
                 defaultProps: {
-                    variant: "outlined",
-                    size: "medium",
                     fullWidth: true,
                 },
             },
@@ -136,10 +136,15 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
                     }),
                 },
             },
+            MuiDialog: {
+                defaultProps: {
+                    fullWidth: true,
+                }
+            },
         },
     });
 
-    const navigation: Navigation = getNavigation({ user: { name: "Dalibor" }, i18n, t });
+    const navigation: Navigation = props.getNavigation({ user: { name: "Dalibor", department: "MD0L50", employeeId: "C2503017", company: "", category: "" }, t });
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.resolvedLanguage}>
@@ -152,10 +157,11 @@ export const LayoutProvider: FC<ProvidersProps> = ({ getNavigation, title, child
                     }}
                     slots={{
                         toolbarActions: () => null,
-                        toolbarAccount: () => null,
+                        toolbarAccount: () => <div>acc</div>,
+                        appTitle: (props) => <AppTitle title={title} environment="Development" />,
                     }}
                 >
-                    {children}
+                    {props.children}
                 </DashboardLayout>
             </TanstackRouterAppProvider>
         </LocalizationProvider>

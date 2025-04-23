@@ -1,7 +1,7 @@
-import { i18n, TFunction } from "i18next";
+import { TFunction } from "i18next";
+import { User } from "./User";
 
 export interface NavigationParams {
-    user: any;
+    user: User;
     t: TFunction<"translation", undefined>;
-    i18n: i18n;
 }
