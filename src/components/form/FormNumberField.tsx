@@ -7,7 +7,7 @@ import { NumericFormatProps, InputAttributes } from 'react-number-format/types/t
 
 interface FormTextFieldProps extends Omit<TextFieldProps, FormOmittedProps> { }
 
-interface FormNumberFieldProps extends FormTextFieldProps {
+export interface FormNumberFieldProps extends FormTextFieldProps {
 	defaultValue?: number | null;
 	options?: Omit<NumericFormatProps<InputAttributes>, "customInput" | "onValueChange" | keyof InputAttributes>;
 }
