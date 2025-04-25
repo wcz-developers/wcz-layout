@@ -1,0 +1,23 @@
+{
+  "Layout": {
+    "Logout": "Logout",
+    "LogIn": "Log In",
+    "Language": "Language",
+    "Appearance": "Appearance",
+    "Light": "Light",
+    "Dark": "Dark",
+    "System": "System",
+    "Home": "Home",
+    "Settings": "Settings",
+    "Version": "Version",
+    "Unauthorized": "Unauthorized",
+    "Development": "Development",
+    "DevelopmentDialogTitle": "Testing environment",
+    "DevelopmentDialogContent": "You are in a test environment. Data integrity is not guaranteed and application behavior may be unpredictable. Please proceed with caution and report any unexpected behavior to the development team.",
+    "AddRow": "Add row",
+    "Notifications": "Notifications",
+    "NoNotificationsAtTheMoment": "No notifications at the moment",
+    "Environment": "Environment"
+  },
+  "Homepage": "Home Page"
+}

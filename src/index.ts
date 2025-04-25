@@ -1,3 +1,5 @@
+import './types/i18next';
+
 /* Components */
 export { RouterButton } from "./components/router/RouterButton";
 export { RouterLink } from "./components/router/RouterLink";

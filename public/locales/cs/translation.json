@@ -1,0 +1,22 @@
+{
+  "Layout": {
+    "Logout": "Odhlásit se",
+    "LogIn": "Přihlásit se",
+    "Language": "Jazyk",
+    "Appearance": "Vzhled",
+    "Light": "Světlý",
+    "Dark": "Tmavý",
+    "System": "Systém",
+    "Home": "Domů",
+    "Settings": "Nastavení",
+    "Version": "Verze",
+    "Unauthorized": "Neoprávněný",
+    "Development": "Testovací",
+    "DevelopmentDialogTitle": "Testovací prostředí",
+    "DevelopmentDialogContent": "Nacházíte se v testovacím prostředí. Integrita dat není zaručena a chování aplikace může být nepředvídatelné. Prosím, buďte opatrní a jakékoli neočekávané chování ihned hláste vývojovému týmu.",
+    "AddRow": "Přidat řádek",
+    "Notifications": "Oznámení",
+    "NoNotificationsAtTheMoment": "Žádná oznámení v tuto chvíli"
+  },
+  "Homepage": "Domovská stránka",
+}

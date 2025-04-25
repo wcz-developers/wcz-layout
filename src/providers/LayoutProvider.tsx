@@ -4,27 +4,34 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Navigation } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
-import i18next from "i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
-import I18NextHttpBackend from "i18next-http-backend";
+import i18n from "i18next";
+import LanguageDetector from 'i18next-browser-languagedetector';
+import HttpBackend from 'i18next-http-backend';
 import { FC, useState } from 'react';
 import { initReactI18next, useTranslation } from "react-i18next";
 import { z } from "zod";
 import { zodI18nMap } from "zod-i18n-map";
 import zodCsTranslations from "zod-i18n-map/locales/cs/zod.json";
 import zodEnTranslations from "zod-i18n-map/locales/en/zod.json";
-import { NavigationParams } from '~/models/NavigationParams';
-import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
 import { AppTitle } from '~/components/AppTitle';
+import { NavigationParams } from '~/models/NavigationParams';
+import { resources } from '../types/i18next';
+import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
 
-i18next
-    .use(initReactI18next)
+i18n
+    .use(HttpBackend)
     .use(LanguageDetector)
-    .use(I18NextHttpBackend)
-    .init({ fallbackLng: "en" });
+    .use(initReactI18next)
+    .init({
+        resources,
+        fallbackLng: 'en',
+        interpolation: {
+            escapeValue: false,
+        },
+    });
 
-i18next.addResourceBundle("en", "zod", zodEnTranslations);
-i18next.addResourceBundle("cs", "zod", zodCsTranslations);
+i18n.addResourceBundle("en", "zod", zodEnTranslations);
+i18n.addResourceBundle("cs", "zod", zodCsTranslations);
 z.setErrorMap(zodI18nMap);
 
 interface ProvidersProps {
