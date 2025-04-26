@@ -14,11 +14,11 @@ export const FormSubmitButton: FC<FormSubmitButtonProps> = (props) => {
     };
 
     return (
-        <form.Subscribe selector={(state) => [state.isSubmitting]}>
-            {([isSubmitting]) => (
+        <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
+            {([canSubmit, isSubmitting]) => (
                 <Button
                     loading={isSubmitting}
-                    disabled={isSubmitting}
+                    disabled={!canSubmit}
                     onClick={handleClick}
                     aria-label="submit"
                     {...props}
