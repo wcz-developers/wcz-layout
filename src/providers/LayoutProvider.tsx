@@ -15,7 +15,6 @@ import zodCsTranslations from "zod-i18n-map/locales/cs/zod.json";
 import zodEnTranslations from "zod-i18n-map/locales/en/zod.json";
 import { AppTitle } from '~/components/AppTitle';
 import { NavigationParams } from '~/models/NavigationParams';
-import { resources } from '../types/i18next';
 import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
 
 i18n
@@ -23,7 +22,6 @@ i18n
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        resources,
         fallbackLng: 'en',
         interpolation: {
             escapeValue: false,
