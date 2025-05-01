@@ -13,7 +13,8 @@ import { z } from "zod";
 import { zodI18nMap } from "zod-i18n-map";
 import zodCsTranslations from "zod-i18n-map/locales/cs/zod.json";
 import zodEnTranslations from "zod-i18n-map/locales/en/zod.json";
-import { AppTitle } from '~/components/AppTitle';
+import { AppTitle } from '~/components/core/AppTitle';
+import { ToolbarAccount } from '~/components/core/ToolbarAccount';
 import { NavigationParams } from '~/models/NavigationParams';
 import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
 
@@ -50,20 +51,14 @@ export const LayoutProvider: FC<ProvidersProps> = (props) => {
         colorSchemes: {
             light: {
                 palette: {
-                    primary: { main: indigo[600] },
-                    secondary: { main: indigo[600] },
-                    background: {
-                        paper: grey[200],
-                    },
+                    primary: { main: "#006E94" },
+                    secondary: { main: "#91D44F" },
                 },
             },
             dark: {
                 palette: {
-                    primary: { main: indigo[400] },
-                    secondary: { main: indigo[400] },
-                    background: {
-                        paper: grey[900],
-                    },
+                    primary: { main: "#006E94" },
+                    secondary: { main: "#91D44F" },
                 },
             },
         },
@@ -96,16 +91,6 @@ export const LayoutProvider: FC<ProvidersProps> = (props) => {
                             },
                         },
                     };
-                },
-            },
-            MuiDrawer: {
-                styleOverrides: {
-                    paper: ({ theme }) => ({
-                        backgroundColor: "inherit",
-                        [theme.breakpoints.down("sm")]: {
-                            backgroundColor: theme.palette.background.paper,
-                        },
-                    }),
                 },
             },
             MuiTextField: {
@@ -162,7 +147,7 @@ export const LayoutProvider: FC<ProvidersProps> = (props) => {
                     }}
                     slots={{
                         toolbarActions: () => null,
-                        toolbarAccount: () => <div>acc</div>,
+                        toolbarAccount: ToolbarAccount,
                         appTitle: (props) => <AppTitle title={title} environment="Development" />,
                     }}
                 >
