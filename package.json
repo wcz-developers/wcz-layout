@@ -26,7 +26,8 @@
     "react-number-format": "^5.4.4",
     "@toolpad/core": "0.13.0",
     "uuidv7": "^1.0.2",
-    "zod-i18n-map": "^2.27.0"
+    "zod-i18n-map": "^2.27.0",
+    "@tanstack/react-router-with-query": "^1.119.0"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",

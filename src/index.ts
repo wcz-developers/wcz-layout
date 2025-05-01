@@ -1,4 +1,4 @@
-import './types/i18next';
+import './types/i18next.d';
 
 /* Components */
 export { RouterButton } from "./components/router/RouterButton";

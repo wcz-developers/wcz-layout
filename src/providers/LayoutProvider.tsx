@@ -1,5 +1,3 @@
-import { createTheme } from '@mui/material';
-import { grey, indigo } from '@mui/material/colors';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Navigation } from "@toolpad/core/AppProvider";
@@ -14,9 +12,13 @@ import { zodI18nMap } from "zod-i18n-map";
 import zodCsTranslations from "zod-i18n-map/locales/cs/zod.json";
 import zodEnTranslations from "zod-i18n-map/locales/en/zod.json";
 import { AppTitle } from '~/components/core/AppTitle';
+import { DevelopmentBanner } from '~/components/core/DevelopmentBanner';
 import { ToolbarAccount } from '~/components/core/ToolbarAccount';
 import { NavigationParams } from '~/models/NavigationParams';
+import { theme } from '~/utils/Theme';
 import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
+import { LinearProgress } from '@mui/material';
+import { useIsFetching, useIsMutating } from '@tanstack/react-query';
 
 i18n
     .use(HttpBackend)
@@ -36,122 +38,32 @@ z.setErrorMap(zodI18nMap);
 interface ProvidersProps {
     getNavigation: (params: NavigationParams) => Navigation;
     title: string;
-    //theme: Theme;
     children: React.ReactNode;
 }
 
 export const LayoutProvider: FC<ProvidersProps> = (props) => {
     const { t, i18n } = useTranslation();
+    const isFetching = !!useIsFetching();
+    const isMutating = !!useIsMutating();
     const [title, setTitle] = useState(props.title);
-
-    const createdTheme = createTheme({
-        cssVariables: {
-            colorSchemeSelector: "data-toolpad-color-scheme",
-        },
-        colorSchemes: {
-            light: {
-                palette: {
-                    primary: { main: "#006E94" },
-                    secondary: { main: "#91D44F" },
-                },
-            },
-            dark: {
-                palette: {
-                    primary: { main: "#006E94" },
-                    secondary: { main: "#91D44F" },
-                },
-            },
-        },
-        components: {
-            MuiCssBaseline: {
-                styleOverrides: (theme) => {
-                    return {
-                        body: {
-                            "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-                                width: "0.7em",
-                                height: "0.7em",
-                            },
-                            "&::-webkit-scrollbar-track, & *::-webkit-scrollbar-track": {
-                                backgroundColor:
-                                    theme.palette.mode === "dark" ? grey[900] : grey[200],
-                                borderRadius: "5px",
-                            },
-                            "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
-                                backgroundColor:
-                                    theme.palette.mode === "dark" ? grey[800] : grey[400],
-                                borderRadius: "10px",
-                            },
-                            "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover":
-                            {
-                                backgroundColor:
-                                    theme.palette.mode === "dark" ? grey[700] : grey[500],
-                            },
-                            "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-                                backgroundColor: "transparent",
-                            },
-                        },
-                    };
-                },
-            },
-            MuiTextField: {
-                defaultProps: {
-                    fullWidth: true,
-                },
-            },
-            MuiTableContainer: {
-                styleOverrides: {
-                    root: ({ theme }) => ({
-                        height: 'calc(100vh - 56px)',
-                        [theme.breakpoints.up('sm')]: {
-                            height: 'calc(100vh - 64px)',
-                        },
-                        "& .MuiDataGrid-cell--editing": {
-                            "& .MuiInputBase-root": {
-                                height: "100%",
-                            },
-                        },
-                        "& .MuiDataGrid-columnHeaderTitle": {
-                            fontWeight: 600,
-                        },
-                        "& .Mui-error": {
-                            backgroundColor: theme.palette.error.main,
-                            color: theme.palette.error.contrastText,
-                        },
-                        "& .MuiDataGrid-booleanCell[data-value='true']": {
-                            color: `${theme.palette.success.main} !important`,
-                        },
-                        "& .MuiDataGrid-booleanCell[data-value='false']": {
-                            color: `${theme.palette.error.main} !important`,
-                        },
-                    }),
-                },
-            },
-            MuiDialog: {
-                defaultProps: {
-                    fullWidth: true,
-                }
-            },
-        },
-    });
 
     const navigation: Navigation = props.getNavigation({ user: { name: "Dalibor", department: "MD0L50", employeeId: "C2503017", company: "", category: "" }, t });
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.resolvedLanguage}>
-            <TanstackRouterAppProvider navigation={navigation} theme={createdTheme}>
+            <TanstackRouterAppProvider navigation={navigation} theme={theme}>
                 <DashboardLayout
                     defaultSidebarCollapsed
-                    branding={{
-                        logo: <img src="/android-chrome-192x192.png" alt="Logo" />,
-                        title: title
-                    }}
+                    hideNavigation={!navigation.length}
                     slots={{
                         toolbarActions: () => null,
                         toolbarAccount: ToolbarAccount,
-                        appTitle: (props) => <AppTitle title={title} environment="Development" />,
+                        appTitle: () => <AppTitle title={title} environment="Development" />,
                     }}
                 >
                     {props.children}
+                    <DevelopmentBanner hasNavigationRoutes={!!navigation.length} />
+                    {(isFetching || isMutating) && <LinearProgress sx={{ position: "fixed", top: { xs: 56, sm: 64 }, left: 0, right: 0 }} />}
                 </DashboardLayout>
             </TanstackRouterAppProvider>
         </LocalizationProvider>
