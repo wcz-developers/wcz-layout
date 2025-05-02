@@ -2,7 +2,7 @@ import { Button, ButtonProps } from "@mui/material";
 import { FC } from "react";
 import { useFormContext } from "~/hooks/FormHooks";
 
-export interface FormSubmitButtonProps extends Omit<ButtonProps, "loading" | "disabled" | "onClick"> { }
+export interface FormSubmitButtonProps extends Omit<ButtonProps, "loading" | "disabled" | "onClick" | "type"> { }
 
 export const FormSubmitButton: FC<FormSubmitButtonProps> = (props) => {
     const form = useFormContext();
@@ -20,6 +20,7 @@ export const FormSubmitButton: FC<FormSubmitButtonProps> = (props) => {
                     loading={isSubmitting}
                     disabled={!canSubmit}
                     onClick={handleClick}
+                    type="submit"
                     aria-label="submit"
                     {...props}
                 />
