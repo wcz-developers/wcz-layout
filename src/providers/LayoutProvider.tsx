@@ -1,5 +1,7 @@
+import { LinearProgress } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useIsFetching, useIsMutating } from '@tanstack/react-query';
 import { Navigation } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import i18n from "i18next";
@@ -14,11 +16,9 @@ import zodEnTranslations from "zod-i18n-map/locales/en/zod.json";
 import { AppTitle } from '~/components/core/AppTitle';
 import { DevelopmentBanner } from '~/components/core/DevelopmentBanner';
 import { ToolbarAccount } from '~/components/core/ToolbarAccount';
+import { useGetTheme } from '~/hooks/ThemeHook';
 import { NavigationParams } from '~/models/NavigationParams';
-import { theme } from '~/utils/Theme';
 import { TanstackRouterAppProvider } from './TanstackRouterAppProvider';
-import { LinearProgress } from '@mui/material';
-import { useIsFetching, useIsMutating } from '@tanstack/react-query';
 
 i18n
     .use(HttpBackend)
@@ -42,6 +42,7 @@ interface ProvidersProps {
 }
 
 export const LayoutProvider: FC<ProvidersProps> = (props) => {
+    const theme = useGetTheme();
     const { t, i18n } = useTranslation();
     const isFetching = !!useIsFetching();
     const isMutating = !!useIsMutating();

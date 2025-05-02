@@ -33,7 +33,6 @@ export const ToolbarAccount: FC = () => {
         switch (mode) {
             case "light": return t("Layout.Light");
             case "dark": return t("Layout.Dark");
-            case "system": return t("Layout.System");
             default: return t("Layout.System");
         }
     };

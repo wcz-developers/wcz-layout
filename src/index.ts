@@ -6,6 +6,7 @@ export { RouterLink } from "./components/router/RouterLink";
 export { RouterTab } from "./components/router/RouterTab";
 export { RouterNotFound } from "./components/router/RouterNotFound";
 export { RouterError } from "./components/router/RouterError";
+export { TypographyWithIcon } from "./components/core/TypographyWithIcon";
 
 /* Providers */
 export { LayoutProvider } from "./providers/LayoutProvider";

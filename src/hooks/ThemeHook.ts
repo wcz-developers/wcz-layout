@@ -1,40 +1,104 @@
-// use get theme
+import { createTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
+import { csCZ, enUS } from "@mui/material/locale";
+import { csCZ as dataGridCsCz, enUS as dataGridEnUs } from "@mui/x-data-grid-premium/locales";
+import { csCZ as datePickersCsCz, enUS as datePickersEnUs } from "@mui/x-date-pickers-pro/locales";
+import { useTranslation } from "react-i18next";
 
-// const theme: Theme = createTheme({
-//     palette: {
-//         mode: resolvedMode,
-//         primary: { main: (colors.primary as any)?.[resolvedMode] || (colors.primary as any)?.main, },
-//         secondary: { main: (colors.secondary as any)?.[resolvedMode] || (colors.secondary as any)?.main, },
-//         background: resolvedMode === "light" && colors.background ? { default: colors.background.default, paper: colors.background.paper, } : {},
-//     },
-//     components: {
-//         MuiCssBaseline: {
-//             styleOverrides: (theme) => ({
-//                 body: {
-//                     "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-//                         width: "0.7em",
-//                         height: "0.7em",
-//                     },
-//                     "&::-webkit-scrollbar-track, & *::-webkit-scrollbar-track": {
-//                         backgroundColor: theme.palette.mode === "dark" ? grey[900] : grey[200],
-//                         borderRadius: "5px",
-//                     },
-//                     "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
-//                         backgroundColor: theme.palette.mode === "dark" ? grey[800] : grey[400],
-//                         borderRadius: "10px",
-//                     },
-//                     "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-//                         backgroundColor: theme.palette.mode === "dark" ? grey[700] : grey[500],
-//                     },
-//                     "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-//                         backgroundColor: "transparent",
-//                     },
-//                 },
-//             }),
-//         },
-//     },
-// },
-//     i18n.language === "cs" ? datePickersCsCz : datePickersEnUs,
-//     i18n.language === "cs" ? dataGridCsCz : dataGridEnUs,
-//     i18n.language === "cs" ? csCZ : enUS
-// );
+export const useGetTheme = () => {
+    const { i18n } = useTranslation();
+
+    return createTheme({
+        cssVariables: {
+            colorSchemeSelector: "data-toolpad-color-scheme",
+        },
+        colorSchemes: {
+            light: {
+                palette: {
+                    primary: { main: "#006E94" },
+                    secondary: { main: "#91D44F" },
+                },
+            },
+            dark: {
+                palette: {
+                    primary: { main: "#006E94" },
+                    secondary: { main: "#91D44F" },
+                },
+            },
+        },
+        components: {
+            MuiCssBaseline: {
+                styleOverrides: (theme) => {
+                    return {
+                        body: {
+                            "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+                                width: "0.7em",
+                                height: "0.7em",
+                            },
+                            "&::-webkit-scrollbar-track, & *::-webkit-scrollbar-track": {
+                                backgroundColor:
+                                    theme.palette.mode === "dark" ? grey[900] : grey[200],
+                                borderRadius: "5px",
+                            },
+                            "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+                                backgroundColor:
+                                    theme.palette.mode === "dark" ? grey[800] : grey[400],
+                                borderRadius: "10px",
+                            },
+                            "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover":
+                            {
+                                backgroundColor:
+                                    theme.palette.mode === "dark" ? grey[700] : grey[500],
+                            },
+                            "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+                                backgroundColor: "transparent",
+                            },
+                        },
+                    };
+                },
+            },
+            MuiTextField: {
+                defaultProps: {
+                    fullWidth: true,
+                },
+            },
+            MuiTableContainer: {
+                styleOverrides: {
+                    root: ({ theme }) => ({
+                        height: 'calc(100vh - 56px)',
+                        [theme.breakpoints.up('sm')]: {
+                            height: 'calc(100vh - 64px)',
+                        },
+                        "& .MuiDataGrid-cell--editing": {
+                            "& .MuiInputBase-root": {
+                                height: "100%",
+                            },
+                        },
+                        "& .MuiDataGrid-columnHeaderTitle": {
+                            fontWeight: 600,
+                        },
+                        "& .Mui-error": {
+                            backgroundColor: theme.palette.error.main,
+                            color: theme.palette.error.contrastText,
+                        },
+                        "& .MuiDataGrid-booleanCell[data-value='true']": {
+                            color: `${theme.palette.success.main} !important`,
+                        },
+                        "& .MuiDataGrid-booleanCell[data-value='false']": {
+                            color: `${theme.palette.error.main} !important`,
+                        },
+                    }),
+                },
+            },
+            MuiDialog: {
+                defaultProps: {
+                    fullWidth: true,
+                }
+            },
+        },
+    },
+        i18n.language === "cs" ? datePickersCsCz : datePickersEnUs,
+        i18n.language === "cs" ? dataGridCsCz : dataGridEnUs,
+        i18n.language === "cs" ? csCZ : enUS
+    );
+}

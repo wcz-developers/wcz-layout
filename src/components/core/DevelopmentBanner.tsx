@@ -1,6 +1,5 @@
 import { Close } from "@mui/icons-material";
 import { Fade, Grid, IconButton, Paper, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -16,7 +15,7 @@ export const DevelopmentBanner: React.FC<DevelopmentBannerProps> = ({ hasNavigat
 
     return (
         <Fade appear={false} in={bannerOpen}>
-            <Paper square variant="outlined" tabIndex={-1} sx={theme => ({
+            <Paper square elevation={3} tabIndex={-1} sx={{
                 position: "fixed",
                 bottom: 0,
                 left: { xs: 0, sm: hasNavigationRoutes ? 63.3 : 0 },
@@ -25,8 +24,7 @@ export const DevelopmentBanner: React.FC<DevelopmentBannerProps> = ({ hasNavigat
                 p: 2,
                 borderWidth: 0,
                 borderTopWidth: 1,
-                bgcolor: theme.palette.mode === "dark" ? grey[900] : grey[100]
-            })}>
+            }}>
                 <Grid container justifyContent="space-between" alignItems="center">
                     <Grid size={10}>
                         <Typography fontWeight="bold">{t("Layout.DevelopmentDialogTitle")}</Typography>
