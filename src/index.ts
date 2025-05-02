@@ -20,6 +20,7 @@ export { Platform, getContrastTextColor, wczApiClient } from "./utils/ClientUtil
 /* Hooks */
 export { useFieldContext, useFormContext, useLayoutForm, withLayoutForm } from "./hooks/FormHooks";
 export { useDialogs } from '@toolpad/core/useDialogs';
+export { useNotifications } from '@toolpad/core/useNotifications';
 export { useLocalStorageState } from '@toolpad/core/useLocalStorageState';
 
 /* Models */

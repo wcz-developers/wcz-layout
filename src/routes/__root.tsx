@@ -51,12 +51,12 @@ function RootComponent() {
         <HeadContent />
       </head>
       <body>
+        <Scripts />
         <LayoutProvider
           getNavigation={getNavigation}
           title={packageJson.name}
         >
           <Outlet />
-          <Scripts />
         </LayoutProvider>
       </body>
     </html>
