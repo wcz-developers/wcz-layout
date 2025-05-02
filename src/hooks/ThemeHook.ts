@@ -1,9 +1,12 @@
-import { createTheme } from "@mui/material";
+import { createTheme, lighten } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { csCZ, enUS } from "@mui/material/locale";
 import { csCZ as dataGridCsCz, enUS as dataGridEnUs } from "@mui/x-data-grid-premium/locales";
 import { csCZ as datePickersCsCz, enUS as datePickersEnUs } from "@mui/x-date-pickers-pro/locales";
 import { useTranslation } from "react-i18next";
+
+const WISTRON_PRIMARY = "#00506E";
+const WISTRON_SECONDARY = "#64DC00";
 
 export const useGetTheme = () => {
     const { i18n } = useTranslation();
@@ -15,14 +18,14 @@ export const useGetTheme = () => {
         colorSchemes: {
             light: {
                 palette: {
-                    primary: { main: "#006E94" },
-                    secondary: { main: "#91D44F" },
+                    primary: { main: WISTRON_PRIMARY },
+                    secondary: { main: WISTRON_SECONDARY },
                 },
             },
             dark: {
                 palette: {
-                    primary: { main: "#006E94" },
-                    secondary: { main: "#91D44F" },
+                    primary: { main: lighten(WISTRON_PRIMARY, 0.1) },
+                    secondary: { main: WISTRON_SECONDARY },
                 },
             },
         },
