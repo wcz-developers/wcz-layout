@@ -1,4 +1,4 @@
-import { createTheme, lighten } from "@mui/material";
+import { createTheme, darken, lighten } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { csCZ, enUS } from "@mui/material/locale";
 import { csCZ as dataGridCsCz, enUS as dataGridEnUs } from "@mui/x-data-grid-premium/locales";
@@ -25,7 +25,7 @@ export const useGetTheme = () => {
             dark: {
                 palette: {
                     primary: { main: lighten(WISTRON_PRIMARY, 0.1) },
-                    secondary: { main: WISTRON_SECONDARY },
+                    secondary: { main: darken(WISTRON_SECONDARY, 0.1) },
                 },
             },
         },
