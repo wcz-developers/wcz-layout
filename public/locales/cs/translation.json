@@ -11,7 +11,6 @@
     "ThisPageCouldNotBeFound": "Tato stránka nebyla nalezena.",
     "Settings": "Nastavení",
     "Unauthorized": "Neoprávněný",
-    "Development": "Testovací",
     "DevelopmentDialogTitle": "Testovací prostředí",
     "DevelopmentDialogContent": "Nacházíte se v testovacím prostředí. Integrita dat není zaručena a chování aplikace může být nepředvídatelné. Prosím, buďte opatrní a jakékoli neočekávané chování ihned hláste vývojovému týmu."
   }

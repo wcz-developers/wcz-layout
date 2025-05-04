@@ -63,7 +63,7 @@ export const LayoutProvider: FC<ProvidersProps> = (props) => {
                         slots={{
                             toolbarActions: () => null,
                             toolbarAccount: ToolbarAccount,
-                            appTitle: () => <AppTitle title={props.title} environment="Development" />,
+                            appTitle: () => <AppTitle title={props.title} />,
                         }}
                     >
                         {props.children}
