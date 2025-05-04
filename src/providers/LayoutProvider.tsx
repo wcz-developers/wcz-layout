@@ -1,4 +1,4 @@
-import { LinearProgress, useMediaQuery } from '@mui/material';
+import { CssVarsThemeOptions, LinearProgress, useMediaQuery } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useIsFetching, useIsMutating } from '@tanstack/react-query';
@@ -39,15 +39,15 @@ z.setErrorMap(zodI18nMap);
 interface ProvidersProps {
     getNavigation: (params: NavigationParams) => Navigation;
     title: string;
+    theme?: Pick<CssVarsThemeOptions, 'colorSchemes' | 'components'>;
     children: React.ReactNode;
 }
 
 export const LayoutProvider: FC<ProvidersProps> = (props) => {
-    const theme = useGetTheme();
+    const theme = useGetTheme(props.theme);
     const { t, i18n } = useTranslation();
     const isFetching = !!useIsFetching();
     const isMutating = !!useIsMutating();
-    const [title, setTitle] = useState(props.title);
     const isLargeScreen = useMediaQuery(theme.breakpoints.up("sm"));
 
     const navigation: Navigation = props.getNavigation({ user: { name: "Dalibor", department: "MD0L50", employeeId: "C2503017", company: "", category: "" }, t });
@@ -62,7 +62,7 @@ export const LayoutProvider: FC<ProvidersProps> = (props) => {
                         slots={{
                             toolbarActions: () => null,
                             toolbarAccount: ToolbarAccount,
-                            appTitle: () => <AppTitle title={title} environment="Development" />,
+                            appTitle: () => <AppTitle title={props.title} environment="Development" />,
                         }}
                     >
                         {props.children}
