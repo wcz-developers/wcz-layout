@@ -1,5 +1,6 @@
 {
   "name": "wcz-test",
+  "displayName": "Rack Checklist",
   "version": "2.2.0",
   "private": false,
   "sideEffects": false,
