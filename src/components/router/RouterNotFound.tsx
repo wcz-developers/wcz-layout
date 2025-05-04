@@ -1,25 +1,16 @@
-import { Link } from '@tanstack/react-router'
+import { Box, Divider, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export function RouterNotFound() {
+  const { t } = useTranslation();
+
   return (
-    <div className="space-y-2 p-2">
-      <div className="text-gray-600 dark:text-gray-400">
-        <p>The page you are looking for does not exist.</p>
-      </div>
-      <p className="flex items-center gap-2 flex-wrap">
-        <button
-          onClick={() => window.history.back()}
-          className="bg-emerald-500 text-white px-2 py-1 rounded uppercase font-black text-sm"
-        >
-          Go back
-        </button>
-        <Link
-          to="/"
-          className="bg-cyan-600 text-white px-2 py-1 rounded uppercase font-black text-sm"
-        >
-          Start Over
-        </Link>
-      </p>
-    </div>
-  )
+    <Box height="100vh" display="flex" flexDirection="column" alignItems="center" justifyContent="center" textAlign="center" px={2} >
+      <Box display="flex" alignItems="center" mb={4}>
+        <Typography variant="h3" component="span" fontWeight={500} sx={{ lineHeight: 1 }} >404</Typography>
+        <Divider orientation="vertical" flexItem sx={{ mx: 3 }} />
+        <Typography variant="h5" component="span">{t("Layout.ThisPageCouldNotBeFound")}</Typography>
+      </Box>
+    </Box>
+  );
 }

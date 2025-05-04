@@ -8,7 +8,7 @@ import { NotificationsProvider } from "@toolpad/core/useNotifications";
 import i18n from "i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpBackend from 'i18next-http-backend';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { initReactI18next, useTranslation } from "react-i18next";
 import { z } from "zod";
 import { zodI18nMap } from "zod-i18n-map";

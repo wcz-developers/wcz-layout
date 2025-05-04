@@ -7,17 +7,12 @@
     "Light": "Light",
     "Dark": "Dark",
     "System": "System",
-    "Home": "Home",
+    "Homepage": "Homepage",
+    "ThisPageCouldNotBeFound": "This page could not be found.",
     "Settings": "Settings",
-    "Version": "Version",
     "Unauthorized": "Unauthorized",
     "Development": "Development",
     "DevelopmentDialogTitle": "Testing environment",
-    "DevelopmentDialogContent": "You are in a test environment. Data integrity is not guaranteed and application behavior may be unpredictable. Please proceed with caution and report any unexpected behavior to the development team.",
-    "AddRow": "Add row",
-    "Notifications": "Notifications",
-    "NoNotificationsAtTheMoment": "No notifications at the moment",
-    "Environment": "Environment"
-  },
-  "Homepage": "Home Page"
+    "DevelopmentDialogContent": "You are in a test environment. Data integrity is not guaranteed and application behavior may be unpredictable. Please proceed with caution and report any unexpected behavior to the development team."
+  }
 }
