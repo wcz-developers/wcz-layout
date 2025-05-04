@@ -12,7 +12,7 @@ export const AppTitle: FC<AppTitleProps> = ({ title, environment }) => {
 
     return (
         <Stack direction="row" alignItems="center" spacing={2}>
-            <img src="/favicon-32x32.png" alt="Logo" />
+            <img src="/favicon-32x32.png" alt="app-logo" />
             <Typography variant="h6">{title}</Typography>
             {environment && <Chip size="small" label={t("Layout.Development")} />}
         </Stack>
