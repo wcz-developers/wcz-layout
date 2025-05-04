@@ -35,13 +35,8 @@ function RootComponent() {
   const getNavigation = ({ t }: NavigationParams): Navigation => [
     {
       segment: "",
-      title: "Homepage",
+      title: t("Layout.Homepage"),
       icon: <Home />,
-    },
-    {
-      segment: "about",
-      title: "About",
-      icon: <InfoOutline />
     },
   ];
 
