@@ -37,8 +37,8 @@ i18n.addResourceBundle("cs", "zod", zodCsTranslations);
 z.setErrorMap(zodI18nMap);
 
 interface ProvidersProps {
-    getNavigation: (params: NavigationParams) => Navigation;
     title: string;
+    getNavigation?: (params: NavigationParams) => Navigation;
     theme?: Pick<CssVarsThemeOptions, 'colorSchemes' | 'components'>;
     children: React.ReactNode;
 }
@@ -49,8 +49,9 @@ export const LayoutProvider: FC<ProvidersProps> = (props) => {
     const isFetching = !!useIsFetching();
     const isMutating = !!useIsMutating();
     const isLargeScreen = useMediaQuery(theme.breakpoints.up("sm"));
+    const user = { name: "Dalibor", department: "MD0L50", employeeId: "C2503017", company: "", category: "" };
 
-    const navigation: Navigation = props.getNavigation({ user: { name: "Dalibor", department: "MD0L50", employeeId: "C2503017", company: "", category: "" }, t });
+    const navigation: Navigation = props.getNavigation ? props.getNavigation({ user, t }) : [];
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={i18n.resolvedLanguage}>
