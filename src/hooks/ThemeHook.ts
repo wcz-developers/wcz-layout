@@ -103,8 +103,8 @@ export const useGetTheme = (theme?: Pick<CssVarsThemeOptions, 'colorSchemes' | '
                 ...theme?.components
             },
         },
-        i18n.language === "cs" ? datePickersCsCz : datePickersEnUs,
-        i18n.language === "cs" ? dataGridCsCz : dataGridEnUs,
-        i18n.language === "cs" ? csCZ : enUS
+        i18n.resolvedLanguage === "cs" ? datePickersCsCz : datePickersEnUs,
+        i18n.resolvedLanguage === "cs" ? dataGridCsCz : dataGridEnUs,
+        i18n.resolvedLanguage === "cs" ? csCZ : enUS
     );
 };
